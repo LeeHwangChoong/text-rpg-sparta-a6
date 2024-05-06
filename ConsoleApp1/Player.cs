@@ -21,6 +21,7 @@ namespace TestRpgGame
         public float Critical = 0.1f; // 치명타율
         public int experience = 0;
         public int experienceLevelUp = 100;
+        public int Infection  { get; set;}
 
         public static Player GetPlayerStatInfo()
         {

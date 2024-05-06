@@ -220,6 +220,8 @@ namespace TestRpgGame
                     int enemyDamage = newEnemy.EnemyAttack - player.defense;
                     player.currenthealth -= Math.Max(0, enemyDamage);
                     player.currenthealth = Math.Max(0, player.currenthealth);
+                    int infectionIncrease = random.Next(1, 6);
+                    player.Infection += infectionIncrease;
 
                     Console.Clear();                                        
 
@@ -236,6 +238,7 @@ namespace TestRpgGame
 
                     Console.WriteLine($"{enemies.IndexOf(newEnemy) + 1}.{newEnemy.EnemyName}가 당신을 공격했습니다!");
                     Console.WriteLine($"{enemyDamage}의 피해를 입었습니다!");
+                    Console.WriteLine($"플레이어의 감염도가 {infectionIncrease} 증가했습니다.");
 
                     Console.WriteLine("---------------------------------------");
                     Console.WriteLine("계속 진행하시려면 엔터키를 입력해주세요");
@@ -250,7 +253,18 @@ namespace TestRpgGame
                         Console.WriteLine("---------------------------------------");
                         Console.ReadLine();
                         Environment.Exit(0);
-                    }    
+                    } 
+                    
+                    if (player.Infection >= 100) 
+                    {
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine("좀비에게 너무 많이 물려 감염되어 사망하였습니다...");
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine("게임이 종료됩니다.");
+                        Console.WriteLine("---------------------------------------");
+                        Console.ReadLine();
+                        Environment.Exit(0);
+                    }
                 }
             }
         }
@@ -280,6 +294,17 @@ namespace TestRpgGame
             {
                 Console.WriteLine("---------------------------------------");
                 Console.WriteLine("좀비에게 물려 사망하였습니다...");
+                Console.WriteLine("---------------------------------------");
+                Console.WriteLine("게임이 종료됩니다.");
+                Console.WriteLine("---------------------------------------");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+
+            if (player.Infection >= 100)
+            {
+                Console.WriteLine("---------------------------------------");
+                Console.WriteLine("좀비에게 너무 많이 물려 감염되어 사망하였습니다...");
                 Console.WriteLine("---------------------------------------");
                 Console.WriteLine("게임이 종료됩니다.");
                 Console.WriteLine("---------------------------------------");
